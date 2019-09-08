@@ -9,7 +9,7 @@ import { type, secret, contestJid } from "../constants";
 
 import ReactLoading from "react-loading";
 
-class JuniorScoreboard extends React.Component {
+class SeniorScoreboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,35 +21,43 @@ class JuniorScoreboard extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch(
-      "http://junior.npc.portal-schematics2019.com/api/contests/scoreboards/get",
-      {
-        method: "POST",
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `type=${type.official}&contestJid=${contestJid}&secret=${secret}`
-      }
-    )
-      .then(response => response.json())
-      .then(result => {
-        const header = [
-          { value: "Rank", type: "header" },
-          { value: "Name", type: "header" },
-          { value: "Total Scores", type: "header" }
-        ];
-        result.scoreboard.config.problemAliases.map(problem => {
-          header.push({ value: problem });
-        });
-        const data = result.scoreboard.content.entries;
+    const apiResult = {
+      event_id: "string",
+      time: "string",
+      contest_time: "string",
+      state: {
+        started: "2019-09-08T11:48:28.093Z",
+        ended: "2019-09-08T11:48:28.093Z",
+        frozen: "2019-09-08T11:48:28.093Z",
+        thawed: "2019-09-08T11:48:28.093Z",
+        finalized: "2019-09-08T11:48:28.093Z",
+        end_of_updates: "2019-09-08T11:48:28.093Z"
+      },
+      rows: [
+        {
+          rank: 0,
+          team_id: "string",
+          score: {
+            num_solved: 0,
+            total_time: 0
+          },
+          problems: [
+            {
+              label: "string",
+              problem_id: "string",
+              num_judged: 0,
+              num_pending: 0,
+              solved: true,
+              time: 0
+            }
+          ]
+        }
+      ]
+    };
 
-        this.setState({
-          isLoading: false,
-          data,
-          header
-        });
-      });
+    this.setState({
+      data: apiResult.rows
+    });
   };
 
   renderHeader = () => {
@@ -94,4 +102,4 @@ class JuniorScoreboard extends React.Component {
   }
 }
 
-export default JuniorScoreboard;
+export default SeniorScoreboard;

@@ -30,12 +30,12 @@ const App = () => {
           </Row>
           <h1 style={s.header}>Public Scoreboard - Schematics NPC 2019</h1>
           <ContestType active={contestType} callback={setContestType} />
-          <div style={s.center}>
-            <Switch>
+          <Switch>
+            <div style={s.center}>
               <Route path="/junior/" component={JuniorScoreboard} />
               <Route path="/senior/" component={null} />
-            </Switch>
-          </div>
+            </div>
+          </Switch>
         </header>
       </Router>
     </div>

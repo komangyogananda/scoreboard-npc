@@ -3,15 +3,9 @@ import React from "react";
 import TableColumn from "../Column";
 
 const TableRow = props => {
-  const { style, values } = props;
+  const { style } = props;
 
-  return (
-    <tr style={{ ...style, ...s.row }}>
-      {values.map(value => (
-        <TableColumn value={value.value} type={value.type}></TableColumn>
-      ))}
-    </tr>
-  );
+  return <tr style={{ ...style, ...s.row }}>{props.children}</tr>;
 };
 
 const s = {
