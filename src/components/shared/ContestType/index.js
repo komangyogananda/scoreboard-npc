@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import { withRouter } from "react-router-dom";
 
 const ContestType = props => {
   return (
@@ -15,7 +14,7 @@ const ContestType = props => {
           active={props.active === "junior"}
           onClick={() => {
             props.callback("junior");
-            props.history.push("/junior/");
+            // props.history.push("/junior/");
           }}
         >
           Junior
@@ -24,7 +23,7 @@ const ContestType = props => {
           variant="danger"
           onClick={() => {
             props.callback("senior");
-            props.history.push("/senior/");
+            // props.history.push("/senior/");
           }}
           active={props.active === "senior"}
         >
@@ -44,4 +43,4 @@ ContestType.defaultProps = {
   callback: () => null
 };
 
-export default withRouter(ContestType);
+export default ContestType;

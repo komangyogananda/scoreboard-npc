@@ -5,7 +5,7 @@ import TableRow from "../shared/Table/Row";
 import TableCol from "../shared/Table/Column";
 import UserRow from "./UserRow";
 import Table from "react-bootstrap/Table";
-import { type, secret, contestJid } from "../constants";
+import { seniorContestId } from "../constants";
 
 import ReactLoading from "react-loading";
 
@@ -21,43 +21,19 @@ class SeniorScoreboard extends React.Component {
   }
 
   componentDidMount = () => {
-    const apiResult = {
-      event_id: "string",
-      time: "string",
-      contest_time: "string",
-      state: {
-        started: "2019-09-08T11:48:28.093Z",
-        ended: "2019-09-08T11:48:28.093Z",
-        frozen: "2019-09-08T11:48:28.093Z",
-        thawed: "2019-09-08T11:48:28.093Z",
-        finalized: "2019-09-08T11:48:28.093Z",
-        end_of_updates: "2019-09-08T11:48:28.093Z"
-      },
-      rows: [
-        {
-          rank: 0,
-          team_id: "string",
-          score: {
-            num_solved: 0,
-            total_time: 0
-          },
-          problems: [
-            {
-              label: "string",
-              problem_id: "string",
-              num_judged: 0,
-              num_pending: 0,
-              solved: true,
-              time: 0
-            }
-          ]
-        }
-      ]
-    };
-
-    this.setState({
-      data: apiResult.rows
-    });
+    fetch(
+      `http://122.248.32.181/domjudge/api/v4/contests/${seniorContestId}/scoreboard?public=true`,
+      {
+        method: "GET"
+      }
+    )
+      .then(response => response.json())
+      .then(result => {
+        console.log(
+          "TCL: SeniorScoreboard -> componentDidMount -> result",
+          result
+        );
+      });
   };
 
   renderHeader = () => {
@@ -84,7 +60,7 @@ class SeniorScoreboard extends React.Component {
         >{`Penyisihan`}</h2>
 
         {isLoading ? (
-          <ReactLoading type="spin" color="#fff"></ReactLoading>
+          <h1>Belum tersedia</h1>
         ) : (
           <>
             <Table striped variant="dark" responsive>

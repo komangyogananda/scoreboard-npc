@@ -4,3 +4,5 @@ export const type = {
   official: "OFFICIAL",
   frozen: "FROZEN"
 };
+
+export const seniorContestId = 2;
