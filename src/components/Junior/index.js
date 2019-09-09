@@ -22,7 +22,7 @@ class JuniorScoreboard extends React.Component {
 
   componentDidMount = () => {
     fetch(
-      "http://junior.npc.portal-schematics2019.com/api/contests/scoreboards/get",
+      "https://junior.npc.portal-schematics2019.com/api/contests/scoreboards/get",
       {
         method: "POST",
         headers: {
