@@ -16,7 +16,7 @@ class UserRow extends React.Component {
   componentDidMount = () => {
     const { contestantJid } = this.props.value;
     fetch(
-      `https://junior.npc.portal-schematics2019.com:2444/api/v1/users/${contestantJid}`
+      `http://junior.npc.portal-schematics2019.com:2444/api/v1/users/${contestantJid}`
     )
       .then(response => response.json())
       .then(result => {

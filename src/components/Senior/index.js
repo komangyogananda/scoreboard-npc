@@ -28,12 +28,7 @@ class SeniorScoreboard extends React.Component {
       }
     )
       .then(response => response.json())
-      .then(result => {
-        console.log(
-          "TCL: SeniorScoreboard -> componentDidMount -> result",
-          result
-        );
-      });
+      .then(result => {});
   };
 
   renderHeader = () => {
