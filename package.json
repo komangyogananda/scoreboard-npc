@@ -18,7 +18,7 @@
     "serve": "^11.1.0"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "set HTTPS=false&&serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
