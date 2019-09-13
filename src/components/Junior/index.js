@@ -16,7 +16,8 @@ class JuniorScoreboard extends React.Component {
       data: {},
       isLoading: true,
       status: 400,
-      contestant: []
+      contestant: [],
+      success: false
     };
   }
 
@@ -32,8 +33,18 @@ class JuniorScoreboard extends React.Component {
         body: `type=${type.official}&contestJid=${contestJid}&secret=${secret}`
       }
     )
-      .then(response => response.json())
+      .then(response => {
+        console.log(
+          "TCL: JuniorScoreboard -> componentDidMount -> response.json()",
+          response.json()
+        );
+        response.json();
+      })
       .then(result => {
+        console.log(
+          "TCL: JuniorScoreboard -> componentDidMount -> result",
+          result
+        );
         const header = [
           { value: "Rank", type: "header" },
           { value: "Name", type: "header" },
@@ -48,6 +59,11 @@ class JuniorScoreboard extends React.Component {
           isLoading: false,
           data,
           header
+        });
+      })
+      .catch(response => {
+        this.setState({
+          isLoading: false
         });
       });
   };
@@ -68,7 +84,7 @@ class JuniorScoreboard extends React.Component {
   };
 
   render() {
-    const { isLoading, data } = this.state;
+    const { isLoading, data, success } = this.state;
     return (
       <Container>
         <h2
@@ -77,7 +93,7 @@ class JuniorScoreboard extends React.Component {
 
         {isLoading ? (
           <ReactLoading type="spin" color="#fff"></ReactLoading>
-        ) : (
+        ) : success ? (
           <>
             <Table striped variant="dark" responsive>
               <thead>{this.renderHeader()}</thead>
@@ -88,6 +104,10 @@ class JuniorScoreboard extends React.Component {
               </tbody>
             </Table>
           </>
+        ) : (
+          <h2 style={{ color: "white", marginBottom: 36, fontWeight: "bold" }}>
+            Contest Belum Tersedia
+          </h2>
         )}
       </Container>
     );

@@ -1,5 +1,5 @@
 export const secret = "pleasegimmescoreboardforpublic";
-export const contestJid = "JIDCONTv469QM20FWpRIlwjUz6A";
+export const contestJid = "JIDCONTqRk9leNS0wWm7pJrNgbm";
 export const type = {
   official: "OFFICIAL",
   frozen: "FROZEN"
