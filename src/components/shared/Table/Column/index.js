@@ -22,7 +22,8 @@ const Column = props => {
       {props.children}
       {solvedPartial !== null &&
       isNumber(solvedPartial) &&
-      solvedPartial < 100 ? (
+      solvedPartial < 100 &&
+      solvedPartial > 0 ? (
         <ProgressBar>
           <ProgressBar
             striped

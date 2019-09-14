@@ -48,7 +48,11 @@ class UserRow extends React.Component {
           const solved = type === "problem" && value === 100;
           const solvedPartial = type === "problem" ? value : null;
           return (
-            <TableCol solved={solved} solvedPartial={solvedPartial}>
+            <TableCol
+              solved={solved}
+              wrong={value === 0 && type === "problem"}
+              solvedPartial={solvedPartial}
+            >
               <span style={{ color: "white" }}>
                 {changeCase.isUpperCase(value ? value : "")
                   ? value

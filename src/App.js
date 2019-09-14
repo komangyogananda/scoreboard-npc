@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -13,7 +12,7 @@ import "./App.css";
 import ContestType from "./components/shared/ContestType";
 
 const App = () => {
-  const [contestType, setContestType] = useState("none");
+  const [contestType, setContestType] = useState("junior");
   return (
     <div className="App">
       <header className="App-header">
