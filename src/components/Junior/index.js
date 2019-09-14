@@ -29,7 +29,6 @@ class JuniorScoreboard extends React.Component {
       contestant: [],
       success: false,
       frozen: false,
-      time: Date.now(),
       timeStart: timeStart,
       timeEnd: timeEnd,
       timeFreeze: timeFreeze,
@@ -83,8 +82,7 @@ class JuniorScoreboard extends React.Component {
   };
 
   checkFreeze = () => {
-    const now = Date.now();
-    if (now > timeFreeze) {
+    if (Date.now() > timeFreeze) {
       this.setState({
         frozen: true
       });
@@ -151,7 +149,7 @@ class JuniorScoreboard extends React.Component {
             </Row>
           </Col>
 
-          {frozen && (
+          {frozen && Date.now() < timeEnd && (
             <Col>
               <h2>Scoreboard sudah di freeze</h2>
             </Col>

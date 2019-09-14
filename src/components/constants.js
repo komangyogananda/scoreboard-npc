@@ -5,8 +5,8 @@ export const type = {
   frozen: "FROZEN"
 };
 
-export const timeStart = 1568480100000;
-export const timeFreeze = 1568481900000;
-export const timeEnd = 1568483700000;
+export const timeStart = 1568512800000;
+export const timeFreeze = 1568520000000;
+export const timeEnd = 1568523600000;
 
 export const seniorContestId = 2;
