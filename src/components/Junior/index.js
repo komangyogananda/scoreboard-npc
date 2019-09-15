@@ -51,7 +51,7 @@ class JuniorScoreboard extends React.Component {
     const { frozen } = this.state;
     const url = frozen
       ? "http://18.139.27.220:8000/junior-freeze"
-      : "http://18.139.27.220:8000/junior-official";
+      : "http://18.139.27.220:8000/junior-freeze";
     fetch(url)
       .then(response => {
         return response.json();
