@@ -12,7 +12,7 @@ import "./App.css";
 import ContestType from "./components/shared/ContestType";
 
 const App = () => {
-  const [contestType, setContestType] = useState("junior");
+  const [contestType, setContestType] = useState("senior");
   return (
     <div className="App">
       <header className="App-header">

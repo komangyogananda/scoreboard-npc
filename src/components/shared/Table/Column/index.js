@@ -4,17 +4,34 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { isNumber } from "util";
 
 const Column = props => {
-  const { style, solved, firstSolve, wrong, solvedPartial } = props;
+  const {
+    style,
+    solved,
+    firstSolve,
+    wrong,
+    solvedPartial,
+    senior,
+    pending
+  } = props;
 
   let background = {};
   if (solved) {
     background = { backgroundColor: "#42e342" };
+    if (senior) {
+      background = { backgroundColor: "#60E760" };
+    }
   }
   if (wrong) {
     background = { backgroundColor: "#D40F37" };
+    if (senior) {
+      background = { backgroundColor: "#E87272" };
+    }
+  }
+  if (pending) {
+    background = { backgroundColor: "#6666FF" };
   }
   if (firstSolve) {
-    background = { backgroundColor: "#155136" };
+    background = { backgroundColor: "#1DAA1D" };
   }
 
   return (
