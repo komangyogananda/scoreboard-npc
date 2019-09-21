@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import ModalUser from "./ModalUser";
 import TableRow from "../shared/Table/Row";
 import TableCol from "../shared/Table/Column";
 import UserRow from "./UserRow";
 import Table from "react-bootstrap/Table";
 
 import ReactLoading from "react-loading";
-import Countdown from "react-countdown-now";
 
 class SeniorScoreboard extends React.Component {
   constructor(props) {
@@ -21,9 +19,26 @@ class SeniorScoreboard extends React.Component {
       header: {},
       isLoading: true,
       contestant: [],
-      success: false
+      success: false,
+      modalShow: false,
+      selectedContestant: {
+        members: ""
+      }
     };
   }
+
+  setModalShow = x => {
+    this.setState({
+      modalShow: x
+    });
+  };
+
+  setSelectedContestant = contestant => {
+    this.setState({
+      selectedContestant: contestant,
+      modalShow: true
+    });
+  };
 
   fetchApi = () => {
     fetch("http://18.139.27.220:8000/senior/scoreboard")
@@ -31,7 +46,6 @@ class SeniorScoreboard extends React.Component {
         return response.json();
       })
       .then(result => {
-        console.log("TCL: SeniorScoreboard -> fetchApi -> result", result);
         const rows = result.rows;
         const header = [
           { value: "Rank", type: "header" },
@@ -49,7 +63,7 @@ class SeniorScoreboard extends React.Component {
           timeInfo,
           problems: result.rows[0].problems,
           isLoading: false,
-          success: false
+          success: true
         });
       })
       .catch(response => {
@@ -105,33 +119,52 @@ class SeniorScoreboard extends React.Component {
   };
 
   render() {
-    const { isLoading, rows, success } = this.state;
+    const {
+      isLoading,
+      rows,
+      success,
+      modalShow,
+      selectedContestant
+    } = this.state;
     const firstAcList = this.checkFirstAc();
     return (
-      <Container>
-        <h2
-          style={{ color: "white", marginBottom: 12, fontWeight: "bold" }}
-        >{`Penyisihan`}</h2>
+      <>
+        <ModalUser
+          show={modalShow}
+          contestant={selectedContestant}
+          onHide={() => this.setModalShow(false)}
+        ></ModalUser>
+        <Container>
+          <h2
+            style={{ color: "white", marginBottom: 12, fontWeight: "bold" }}
+          >{`Penyisihan`}</h2>
 
-        {isLoading ? (
-          <ReactLoading type="spin" color="#fff"></ReactLoading>
-        ) : success ? (
-          <Container>
-            <Table striped variant="dark" responsive>
-              <thead>{this.renderHeader()}</thead>
-              <tbody>
-                {rows.map(row => (
-                  <UserRow value={row} firstAcList={firstAcList}></UserRow>
-                ))}
-              </tbody>
-            </Table>
-          </Container>
-        ) : (
-          <h2 style={{ color: "white", marginBottom: 36, fontWeight: "bold" }}>
-            Contest Belum Dimulai
-          </h2>
-        )}
-      </Container>
+          {isLoading ? (
+            <ReactLoading type="spin" color="#fff"></ReactLoading>
+          ) : success ? (
+            <Container>
+              <Table striped variant="dark" responsive>
+                <thead>{this.renderHeader()}</thead>
+                <tbody>
+                  {rows.map(row => (
+                    <UserRow
+                      value={row}
+                      firstAcList={firstAcList}
+                      setSelectedContestant={this.setSelectedContestant}
+                    ></UserRow>
+                  ))}
+                </tbody>
+              </Table>
+            </Container>
+          ) : (
+            <h2
+              style={{ color: "white", marginBottom: 36, fontWeight: "bold" }}
+            >
+              Contest Belum Dimulai
+            </h2>
+          )}
+        </Container>
+      </>
     );
   }
 }
