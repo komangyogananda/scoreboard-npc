@@ -75,7 +75,7 @@ class SeniorScoreboard extends React.Component {
 
   componentDidMount = () => {
     this.fetchApi();
-    this.callApi = setInterval(() => this.fetchApi(), 10000);
+    this.callApi = setInterval(() => this.fetchApi(), 3000);
   };
 
   renderHeader = () => {

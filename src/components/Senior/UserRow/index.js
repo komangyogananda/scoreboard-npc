@@ -29,6 +29,18 @@ class UserRow extends React.Component {
       });
   };
 
+  componentDidUpdate = () => {
+    const { team_id: teamId } = this.props.value;
+    fetch(`http://18.139.27.220:8000/senior/peserta/team/${teamId}`)
+      .then(response => response.json())
+      .then(result => {
+        this.setState({
+          contestant: result,
+          isLoading: false
+        });
+      });
+  };
+
   render() {
     const { contestant, isLoading } = this.state;
     const {
