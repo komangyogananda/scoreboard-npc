@@ -46,6 +46,7 @@ class SeniorScoreboard extends React.Component {
         return response.json();
       })
       .then(result => {
+        console.log("TCL: SeniorScoreboard -> fetchApi -> result", result);
         const rows = result.rows;
         const header = [
           { value: "Rank", type: "header" },

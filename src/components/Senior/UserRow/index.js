@@ -111,7 +111,7 @@ class UserRow extends React.Component {
               >
                 <Container>
                   <h4 style={{ height: 24, color: "white" }}>{time}</h4>
-                  {!!num_judged && (
+                  {(!!num_judged || !!num_pending) && (
                     <h6 style={{ color: "white" }}>
                       {`${num_judged}`}
                       {!!num_pending && <span>{` + ${num_pending}`}</span>}
