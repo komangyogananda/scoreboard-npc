@@ -50,8 +50,8 @@ class JuniorScoreboard extends React.Component {
     // )
     const { frozen } = this.state;
     const url = frozen
-      ? "http://18.139.27.220:8000/junior-freeze"
-      : "http://18.139.27.220:8000/junior-freeze";
+      ? "http://18.139.27.220:8000/final-junior-freeze"
+      : "http://18.139.27.220:8000/final-junior-official";
     fetch(url)
       .then(response => {
         return response.json();
@@ -117,7 +117,7 @@ class JuniorScoreboard extends React.Component {
       <Container>
         <h2
           style={{ color: "white", marginBottom: 12, fontWeight: "bold" }}
-        >{`Penyisihan`}</h2>
+        >{`Final`}</h2>
         <Row style={{ marginBottom: 24 }}>
           <Col>
             <Row>

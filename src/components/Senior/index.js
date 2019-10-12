@@ -41,7 +41,7 @@ class SeniorScoreboard extends React.Component {
   };
 
   fetchApi = () => {
-    fetch("http://18.139.27.220:8000/senior/scoreboard")
+    fetch("http://18.139.27.220:8000/senior/scoreboard-final")
       .then(response => {
         return response.json();
       })
@@ -138,7 +138,7 @@ class SeniorScoreboard extends React.Component {
         <Container>
           <h2
             style={{ color: "white", marginBottom: 12, fontWeight: "bold" }}
-          >{`Penyisihan`}</h2>
+          >{`Final`}</h2>
 
           {isLoading ? (
             <ReactLoading type="spin" color="#fff"></ReactLoading>
